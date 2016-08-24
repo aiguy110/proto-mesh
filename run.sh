@@ -6,6 +6,12 @@ source config
 
 # Enable the batman-adv kernal module
 modprobe batman-adv
+while true
+do
+   ifconfig bat0
+   if [ $? == 0 ]; then break; fi
+done 
+
 if [ $? != 0 ]; then echo 'batman-adv kernal module not present!';exit 1; fi
 
 # Verify that some packages are installed
@@ -24,7 +30,6 @@ require-package batctl
 require-package dnsmasq
 require-package ip
 
-# May have to insert a delay here to give bat0 time to become available
 
 # Before we actually connect to the batman-adv mesh, lets see if we have internet of our own
 HAVE_INET=0
