@@ -4,6 +4,9 @@ import sys
 if __name__ == '__main__':
    # Get MAC address of interface
    iface = sys.argv[1]
+   iface2 = None
+   if len( sys.argv ) == 3:
+      iface2 = sys.argv[2]
    macStr = ''
    with open('/sys/class/net/'+iface+'/address') as f:
       macStr = f.read().strip()
@@ -28,5 +31,10 @@ if __name__ == '__main__':
       ipv6Str += '0123456789abcdef'[value] 
    ipv6Str=ipv6Str[::-1]+'/64'
  
-   # Apply this IPv6 address to the interface
-   check_output('ip -6 addr add '+ipv6Str+' dev '+iface, shell=True)
+   # Apply this IPv6 address to the interface.
+   # If we recieved a second interface argument apply
+   # it to that one instead.
+   iface_to = iface
+   if iface2:
+      iface_to = iface2
+   check_output('ip -6 addr add '+ipv6Str+' dev '+iface_to, shell=True)

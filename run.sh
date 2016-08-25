@@ -59,4 +59,4 @@ if [ $? == 0 ]
 fi
 
 # Generate and assign the bat0 an IPv6 address
-python3 giveIPv6.py bat0      
+python3 giveIPv6.py wlan0 bat0
