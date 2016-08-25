@@ -6,12 +6,6 @@ source config
 
 # Enable the batman-adv kernal module
 modprobe batman-adv
-while true
-do
-   ifconfig bat0
-   if [ $? == 0 ]; then break; fi
-done 
-
 if [ $? != 0 ]; then echo 'batman-adv kernal module not present!';exit 1; fi
 
 # Verify that some packages are installed
@@ -49,8 +43,13 @@ iwconfig wlan0 channel 1
 iwconfig wlan0 essid 'mesh2'
 ip link set wlan0 up
 
-# Start BATMAN-adv on top of that
-batctl gw_mode client
+# Start BATMAN-adv on top of that, but first make sure batman is ready
+while true
+do
+   batctl gw_mode client > /dev/null
+   if [ $? == 0 ]; then break; fi
+done 
+
 batctl if add wlan0
 if [ $? == 0 ]
    then echo 'Successfully started BATMAN-adv!'
