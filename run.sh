@@ -46,11 +46,12 @@ ip link set wlan0 up
 # Start BATMAN-adv on top of that, but first make sure batman is ready
 while true
 do
-   batctl gw_mode client > /dev/null
+   sleep 1
+   batctl if add wlan0
    if [ $? == 0 ]; then break; fi
 done 
 
-batctl if add wlan0
+batctl gw_mode client
 if [ $? == 0 ]
    then echo 'Successfully started BATMAN-adv!'
    else 
@@ -79,6 +80,7 @@ fi
 # Internet access, if we are the first node in the network (i.e. we were
 # not given our IP by any external  DHCP server), then we need to host a 
 # DHCP server anyway to make sure no new nodes take our address on accident.
+service dnsmasq stop
 if [ $HAVE_INET == 1 ]
    then 
       dnsmasq -i bat0 --dhcp-option=3,$DEFAULT_ADDR
