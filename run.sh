@@ -80,13 +80,16 @@ fi
 # Internet access, if we are the first node in the network (i.e. we were
 # not given our IP by any external  DHCP server), then we need to host a 
 # DHCP server anyway to make sure no new nodes take our address on accident.
-service dnsmasq stop
-if [ $HAVE_INET == 1 ]
-   then 
-      dnsmasq -i bat0 --dhcp-option=3,$DEFAULT_ADDR
-   else
-      if [ $FIRST_ARRIVER == 1 ]; then dnsmasq -i bat0; fi
+service dnsmasq stop &> /dev/null
 
+if [ ! -f /etc/dnsmasq.conf.bak ]
+   then mv /etc/dnsmasq.conf /etc/dnsmasq.conf.bak
 fi
+echo 'port=0' > /etc/dnsmasq.conf 
+echo 'interface=bat0' >> /etc/dnsmasq.conf 
+echo "dhcp-range=$DEFAULT_RANG" >> /etc/dnsmasq.conf    
+
+if [ $HAVE_INET == 1 || $FIRST_ARRIVER == 1 ]; then dnsmasq; fi
+
 echo 'End of script'
 
