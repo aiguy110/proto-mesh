@@ -3,3 +3,5 @@ DEFAULT_EXIP='10.0.0.1/24'
 DEFAULT_ADDR='10.0.0.1'
 DEFAULT_MASK='255.255.255.0'
 
+# Network interface configuration
+WIRELESS_IFACE='wlan0'

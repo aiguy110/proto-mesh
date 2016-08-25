@@ -37,17 +37,17 @@ if [ $? == 0 ]
 fi
 
 # Get our classic 802.11 ad-hoc network up
-ip link set wlan0 down
-iwconfig wlan0 mode ad-hoc
-iwconfig wlan0 channel 1
-iwconfig wlan0 essid 'mesh2'
-ip link set wlan0 up
+ip link set $WIRELESS_IFACE down
+iwconfig $WIRELESS_IFACE mode ad-hoc
+iwconfig $WIRELESS_IFACE channel 1
+iwconfig $WIRELESS_IFACE essid 'mesh2'
+ip link set $WIRELSS_IFACE up
 
 # Start BATMAN-adv on top of that, but first make sure batman is ready
 while true
 do
    sleep 1
-   batctl if add wlan0
+   batctl if add $WIRELESS_IFACE
    if [ $? == 0 ]; then break; fi
 done 
 
