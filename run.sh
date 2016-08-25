@@ -37,11 +37,11 @@ if [ $? == 0 ]
 fi
 
 # Get our classic 802.11 ad-hoc network up
-ip link set $WIRELESS_IFACE down
+ip link set dev $WIRELESS_IFACE down
 iwconfig $WIRELESS_IFACE mode ad-hoc
 iwconfig $WIRELESS_IFACE channel 1
 iwconfig $WIRELESS_IFACE essid 'mesh2'
-ip link set $WIRELSS_IFACE up
+ip link set dev $WIRELESS_IFACE up
 
 # Start BATMAN-adv on top of that, but first make sure batman is ready
 while true
@@ -89,7 +89,7 @@ echo 'port=0' > /etc/dnsmasq.conf
 echo 'interface=bat0' >> /etc/dnsmasq.conf 
 echo "dhcp-range=$DEFAULT_RANG" >> /etc/dnsmasq.conf    
 
-if [ $HAVE_INET == 1 || $FIRST_ARRIVER == 1 ]; then dnsmasq; fi
+if [ $HAVE_INET == 1 ] || [ $FIRST_ARRIVER == 1 ]; then dnsmasq; fi
 
 echo 'End of script'
 
