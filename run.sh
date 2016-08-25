@@ -51,7 +51,6 @@ do
    if [ $? == 0 ]; then break; fi
 done 
 
-batctl gw_mode client
 if [ $? == 0 ]
    then echo 'Successfully started BATMAN-adv!'
    else 
@@ -59,37 +58,5 @@ if [ $? == 0 ]
       exit 1
 fi
 
-# See if we can get an IP configuration from a DHCP server already
-# on the network.
-# Set dhclient timeout time to something more reasonable
-sed -i s/'#timeout 60'/'timeout 5'/g /etc/dhcp/dhclient.conf 
-FIRST_ARRIVER=1
-dhclient -1 bat0 
-if [ $? == 0 ]
-   then 
-      echo 'Got an IP from the network!'
-      FIRST_ARRIVER=0
-   else
-      echo "Could not get IP from the network."
-      echo "Using default IP: $DEFAULT_EXIP"
-      ip addr add $DEFAULT_EXIP dev bat0
-fi 
-
-# If we have Internet access, we are starting a DHCP server no matter what 
-# so batman can help us be a gateway node. However, even if we do not have
-# Internet access, if we are the first node in the network (i.e. we were
-# not given our IP by any external  DHCP server), then we need to host a 
-# DHCP server anyway to make sure no new nodes take our address on accident.
-service dnsmasq stop &> /dev/null
-
-if [ ! -f /etc/dnsmasq.conf.bak ]
-   then mv /etc/dnsmasq.conf /etc/dnsmasq.conf.bak
-fi
-echo 'port=0' > /etc/dnsmasq.conf 
-echo 'interface=bat0' >> /etc/dnsmasq.conf 
-echo "dhcp-range=$DEFAULT_RANG" >> /etc/dnsmasq.conf    
-
-if [ $HAVE_INET == 1 ] || [ $FIRST_ARRIVER == 1 ]; then dnsmasq; fi
-
-echo 'End of script'
-
+# Generate and assign the bat0 an IPv6 address
+python3 giveIPv6.py bat0      
