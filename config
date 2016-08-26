@@ -8,4 +8,4 @@ DEFAULT_RANG='10.0.0.2,10.0.0.254,2m'
 WIRELESS_IFACE='wlan0'
 
 # The name that will be used to access this node on the proto-mesh
-HOSTNAME='raspberryN.p2p'
+HOSTNAME='raspberry2.p2p'
