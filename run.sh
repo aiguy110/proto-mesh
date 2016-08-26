@@ -20,9 +20,30 @@ require-package (){
          echo "Package $1: Already installed."
    fi
 }
+
+require-git-package(){
+   cat "./git-packages/$1" &> /dev/null
+   if [ $? != 0 ]
+      then
+         echo "Git-Package $1: Installing..."
+         mkdir -p "./git-packages/$1"
+         git clone "https://github.com/$1" "./git-packages/$1"
+         cd "./git-packages/$1"
+         make
+         sudo make install
+         cd ../../
+         echo "Git-Package $1: Complete.
+      else
+         echo "Git-Package $1: Already installed
+   fi
+}    
+   
 require-package batctl
 require-package dnsmasq
 require-package ip
+require-package libsodium-dev
+require-git-package mwarning/KadNode
+
 
 
 # Before we actually connect to the batman-adv mesh, lets see if we have internet of our own
