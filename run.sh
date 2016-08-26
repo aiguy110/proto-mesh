@@ -31,7 +31,7 @@ require-git-package(){
          cd "./git-packages/$1"
          make
          sudo make install
-         cd ../../
+         cd ../../../
          echo "Git-Package $1: Complete.
       else
          echo "Git-Package $1: Already installed
