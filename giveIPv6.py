@@ -37,4 +37,5 @@ if __name__ == '__main__':
    iface_to = iface
    if iface2:
       iface_to = iface2
+   check_output('ifconfig '+iface_to+' 0.0.0.0', shell=True)
    check_output('ip -6 addr add '+ipv6Str+' dev '+iface_to, shell=True)
