@@ -4,7 +4,7 @@ import sys
 
 def macToIPv6(mac):
    mac=''.join( filter(lambda x:x!=':', mac) )
-   return 'fe80::'+mac[:4]+':'+mac[4:8]+':'+mac[8:]
+   return 'fe80:bbbb::'+mac[:4]+':'+mac[4:8]+':'+mac[8:]
 
 def listBatmanMACs():
    lines = check_output('batctl o', shell=True).decode('ascii').split('\n')

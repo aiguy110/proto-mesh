@@ -1,3 +1,6 @@
 #Ignore swap files
 *.swp
 ~*
+
+# Ignore the nodes_addrs.txt since it needs to be generated individually by each node
+node_addrs.txt

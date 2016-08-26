@@ -4,4 +4,4 @@ if [ ! -f node_addrs.txt ]; then
 fi
 
 # Start KadNode using that list
-kadnode --iface bat0 --mode ipv6 --peerfile node_addrs.txt --daemon
+kadnode --ifname bat0 --mode ipv6 --peerfile node_addrs.txt --daemon
