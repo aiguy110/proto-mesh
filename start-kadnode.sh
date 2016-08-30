@@ -1,7 +1,5 @@
-# IF NOT ALREADY PRESENT Get a list of all BATMAN node ipv6 addresses written to a file
-if [ ! -f node_addrs.txt ]; then 
-   python3 batnodesToFile.py node_addrs.txt
-fi
+# Write a list of batman node IP addresses to a file
+python3 batnodesToFile4.py node_addrs.txt
 
 # Start KadNode using that list
-kadnode --ifname bat0 --mode ipv6 --peerfile node_addrs.txt --daemon
+kadnode --ifname bat0 --mode ipv4 --peerfile node_addrs.txt --daemon
