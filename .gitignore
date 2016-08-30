@@ -4,3 +4,6 @@
 
 # Ignore the nodes_addrs.txt since it needs to be generated individually by each node
 node_addrs.txt
+
+# Ignore __pycache__
+__pycache__
