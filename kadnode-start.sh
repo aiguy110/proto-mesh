@@ -2,4 +2,4 @@
 python3 batnodesToFile4.py node_addrs.txt
 
 # Start KadNode using that list
-kadnode --ifname bat0 --mode ipv4 --peerfile node_addrs.txt --value-id $1 --daemon
+kadnode --ifname bat0 --mode ipv4 --peerfile node_addrs.txt --value-id $1 --pidfile /var/run/kad.pid --daemon

@@ -10,7 +10,12 @@ if [ $? != 0 ]; then echo 'batman-adv kernal module not present!';exit 1; fi
 
 # Verify that some packages are installed
 require-package (){
-   which $1 > /dev/null
+   if [ ! -z "$2" ] 
+      then
+         ldconfig -p | grep $2 > /dev/null
+      else
+         which $1 > /dev/null
+   fi
    if [ $? != 0 ]
       then
          echo "Package $1: Installing..."
@@ -40,7 +45,7 @@ require-git-package(){
 require-package batctl
 require-package dnsmasq
 require-package ip
-require-package libsodium-dev
+require-package libsodium-dev libsodium
 require-git-package mwarning/KadNode
 
 
@@ -51,7 +56,7 @@ ping -c 1 8.8.8.8 > /dev/null
 if [ $? == 0 ] 
    then 
       HAVE_INET=1
-      echo 'Founded pre-existing internet connection!'
+      echo 'Found pre-existing internet connection!'
    else
       echo 'Unable to find pre-existing internet connection!'
 fi
