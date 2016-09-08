@@ -43,7 +43,7 @@ require-git-package(){
 }    
    
 require-package batctl
-require-package dnsmasq
+require-package python3
 require-package ip
 require-package libsodium-dev libsodium
 require-git-package mwarning/KadNode
