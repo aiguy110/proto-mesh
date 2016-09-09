@@ -1,5 +1,5 @@
 # Make sure proto-mesh is not already "installed"
-grep 'proto-mesh' /etc/rc.local
+grep 'proto-mesh' /etc/rc.local > /dev/null
 if [ $? == 0 ]; then
    echo "Proto-mesh already configured to start at boot."
    exit
