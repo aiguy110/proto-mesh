@@ -1,3 +1,4 @@
-# Start proto-mesh
 export MESH_DIR=/home/pi/proto-mesh
-bash $MESH_DIR/start.sh
+cd $MESH_DIR
+bash $MESH_DIR/start.sh > /var/mesh-log
+cd /
