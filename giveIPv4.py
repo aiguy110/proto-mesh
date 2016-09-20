@@ -22,4 +22,4 @@ if __name__ == '__main__':
    if iface2:
       iface_to = iface2
    check_output('ip addr flush dev '+iface_to, shell=True)
-   check_output('ip addr add '+ipv4Str+' dev '+iface_to, shell=True)
+   check_output('ifconfig '+iface_to+' '+ipv4Str, shell=True)
