@@ -1,3 +1,4 @@
+#!/bin/bash
 # Make sure proto-mesh is not already "installed"
 grep 'proto-mesh' /etc/rc.local > /dev/null
 if [ $? == 0 ]; then
