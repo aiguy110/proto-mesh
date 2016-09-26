@@ -1,4 +1,7 @@
 #!/bin/bash
+cd utils
+
+
 # Make sure proto-mesh is not already "installed"
 grep 'proto-mesh' /etc/rc.local > /dev/null
 if [ $? == 0 ]; then
@@ -19,4 +22,7 @@ file2=/etc/rc.local
 line=$(grep -n -e '^exit 0' $file2 | cut -d ":" -f 1)
 { head -n $(($line-1)) $file2; cat $file1; tail -n +$line $file2; } > .temp
 mv .temp /etc/rc.local
-chmod 777 /etc/rc.local 
+chmod 777 /etc/rc.local
+
+
+cd ../

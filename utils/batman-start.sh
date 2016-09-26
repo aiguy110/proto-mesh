@@ -2,7 +2,7 @@
 echo 'Starting proto-mesh Setup...'
 
 # Load config file
-source config
+source ../config
 
 # Enable the batman-adv kernal module
 modprobe batman-adv
