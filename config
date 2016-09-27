@@ -5,7 +5,8 @@ DEFAULT_MASK='255.255.255.0'
 DEFAULT_RANG='10.0.0.2,10.0.0.254,2m'
 
 # Network interface configuration
-WIRELESS_IFACE='wlp12s0'
+NETWORK_IFACE='wlan0'
+IFACE_SETUP_SCRIPT='wifi/wireless-start.sh'
 
 # The name that will be used to access this node on the proto-mesh
-HOSTNAME='raspberry3.p2p'
+HOSTNAME='raspberryN.p2p'
