@@ -8,5 +8,8 @@ DEFAULT_RANG='10.0.0.2,10.0.0.254,2m'
 NETWORK_IFACE='wlan0'
 IFACE_SETUP_SCRIPT='wifi/wireless-start.sh'
 
+# Enable KadNode decentralize name resolution
+ENABLE_KADNODE=0
+
 # The name that will be used to access this node on the proto-mesh
 HOSTNAME='raspberryN.p2p'

@@ -13,7 +13,7 @@ mesh nodes in wireless range, you should now be connected to them. Use
 Installation
 ============
 To setup the current system to run this mesh software at startup,
-run `sudo ./start.sh` in this directory.
+run `sudo ./setup.sh` in this directory.
 
 Configureation
 ==============
