@@ -16,9 +16,9 @@ bash batman-start.sh
 
 # If KadNode name resolution is enabled, wait for neighbors
 # and then start KadNode
-if [ ENABLE_KADNODE == '1' ]; then 
-bash wait-for-neighbor.sh
-bash kadnode-start.sh $HOSTNAME
+if [ $ENABLE_KADNODE == '1' ]; then 
+   bash wait-for-neighbor.sh
+   bash kadnode-start.sh $HOSTNAME
 fi
 
 cd ../

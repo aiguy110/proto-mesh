@@ -44,4 +44,6 @@ require-package batctl
 require-package python3
 require-package ip
 require-package libsodium-dev libsodium
-require-git-package mwarning/KadNode
+if [ $ENABLE_KADNODE == '1' ]; then
+  require-git-package mwarning/KadNode
+fi
