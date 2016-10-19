@@ -25,18 +25,18 @@ require-package (){
 }
 
 require-git-package(){
-   if [ ! -d "./git-packages/$1" ]
+   if [ ! -d "../git-packages/$1" ]
       then
          echo "Git-Package $1: Installing..."
-         mkdir -p "./git-packages/$1"
-         git clone "https://github.com/$1" "./git-packages/$1" > /dev/null
-         cd "./git-packages/$1"
+         mkdir -p "../git-packages/$1"
+         git clone "https://github.com/$1" "../git-packages/$1" > /dev/null
+         cd "../git-packages/$1"
          make > /dev/null
          sudo make install > /dev/null
          cd ../../../
-         echo "Git-Package $1: Complete.
+         echo "Git-Package $1: Complete."
       else
-         echo "Git-Package $1: Already installed
+         echo "Git-Package $1: Already installed"
    fi
 }    
    
