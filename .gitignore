@@ -1,3 +1,6 @@
+# Ignore the "config" file. Users should have to create their own after every clone.
+config
+
 #Ignore swap files
 *.swp
 ~*
