@@ -1,5 +1,4 @@
 #!/bin/bash
-cd utils
 
 
 # Make sure proto-mesh is not already "installed"
@@ -25,4 +24,3 @@ mv .temp /etc/rc.local
 chmod 777 /etc/rc.local
 
 
-cd ../
