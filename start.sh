@@ -1,4 +1,11 @@
 #!/bin/bash
+
+# Verify that the config file exists
+if [ ! -f config ]; then
+    echo 'config file not present! Aborting.'
+    exit
+fi
+
 # Load config file
 source config
 

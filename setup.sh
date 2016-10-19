@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Verify that config exists
+if [ ! -f config ]; then
+    echo 'config file not present! Aborting.'
+    exit
+fi
 
 # Make sure proto-mesh is not already "installed"
 grep 'proto-mesh' /etc/rc.local > /dev/null
@@ -23,4 +28,5 @@ line=$(grep -n -e '^exit 0' $file2 | cut -d ":" -f 1)
 mv .temp /etc/rc.local
 chmod 777 /etc/rc.local
 
-
+# Clean up
+rm boot-snippet.sh
