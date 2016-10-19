@@ -25,7 +25,7 @@ require-package (){
 }
 
 require-git-package(){
-   if [ ! -d "./git-packages/$1" ]
+   if [ ! -d "../git-packages/$1" ]
       then
          echo "Git-Package $1: Installing..."
          mkdir -p "./git-packages/$1"
