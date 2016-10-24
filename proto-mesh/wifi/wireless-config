@@ -1,0 +1,5 @@
+source config
+
+WIRELESS_IFACE=$NETWORK_IFACE
+ESSID='mesh2'
+CHANNEL=1
