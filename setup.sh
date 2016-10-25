@@ -9,10 +9,14 @@ then
    exit
 fi
 
-#Find out where this directory is and modify the boot-code snippet to reflect this
+echo "Intiailzing..."
+
+# Enable the batman-adv kernal module
+modprobe batman-adv
+if [ $? != 0 ]; then echo 'batman-adv kernal module not present!';exit 1; fi
+
 echo "Copying Files..."
 sudo cp -rf proto-mesh /etc/proto-mesh
-echo "Intiailzing..."
 
 echo "Generating Config File..."
 sudo cp /etc/proto-mesh/config.sample /etc/proto-mesh/config
@@ -20,10 +24,6 @@ sudo cp /etc/proto-mesh/config.sample /etc/proto-mesh/config
 echo "Installing Pre-Reqs..."
 # Load config file
 source /etc/proto-mesh/config
-
-# Enable the batman-adv kernal module
-modprobe batman-adv
-if [ $? != 0 ]; then echo 'batman-adv kernal module not present!';exit 1; fi
 
 # Verify that some packages are installed
 require-package (){
@@ -73,6 +73,7 @@ echo "Generating Service File..."
 sudo cp /etc/proto-mesh/utils/protomesh.service /etc/systemd/system/protomesh.service
 
 #Enable and Start Service
+echo "Starting protomesh service..."
 sudo systemctl enable protomesh.service
 sudo systemctl daemon-reload
 sudo systemctl start protomesh.service
