@@ -1,32 +1,22 @@
 #!/bin/bash
 
-# Verify that config exists
-if [ ! -f config ]; then
-    echo 'config file not present! Aborting.'
-    exit
-fi
-
+FILE="/etc/proto-mesh/utils/protomesh.service"
 # Make sure proto-mesh is not already "installed"
-grep 'proto-mesh' /etc/rc.local > /dev/null
-if [ $? == 0 ]; then
+if [ -f "$FILE" ] && [ "$1" != '-f' ]
+then
    echo "Proto-mesh already configured to start at boot."
+   echo "(Use -f if neccessary)"
    exit
 fi
 
-# Find out where this directory is and modify the boot-code snippet to reflect this
-echo "# Start proto-mesh" > boot-snippet.sh
-echo "export MESH_DIR=$(pwd)"                     > boot-snippet.sh
-echo 'cd $MESH_DIR'                              >> boot-snippet.sh
-echo 'bash $MESH_DIR/start.sh > /var/mesh-log'   >> boot-snippet.sh 
-echo 'cd /'                                      >> boot-snippet.sh
-
-# Efectively, insert this code into rc.local so it is run at start up
-file1=boot-snippet.sh
-file2=/etc/rc.local
-line=$(grep -n -e '^exit 0' $file2 | cut -d ":" -f 1)
-{ head -n $(($line-1)) $file2; cat $file1; tail -n +$line $file2; } > .temp
-mv .temp /etc/rc.local
-chmod 777 /etc/rc.local
-
-# Clean up
-rm boot-snippet.sh
+#Find out where this directory is and modify the boot-code snippet to reflect this
+echo "Copying Files.."
+sudo cp -rf proto-mesh /etc/proto-mesh
+echo "Intiailzing.."
+sudo cp /etc/proto-mesh/utils/protomesh.service /etc/systemd/system/protomesh.service
+echo "Generating Config File..."
+sudo cp /etc/proto-mesh/config.sample /etc/proto-mesh/config
+sudo systemctl enable protomesh.service
+sudo systemctl daemon-reload
+sudo systemctl start protomesh.service
+echo "Setup Complete!"
