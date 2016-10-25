@@ -18,7 +18,6 @@ bash $IFACE_SETUP_SCRIPT
 # Do other things
 cd utils
 
-bash require-dependencies.sh
 bash batman-start.sh
 
 # If KadNode name resolution is enabled, wait for neighbors
