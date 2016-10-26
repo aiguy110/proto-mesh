@@ -21,8 +21,15 @@ sudo cp -rf proto-mesh /etc/proto-mesh
 # Generate Sample Config if Necessary
 if [ ! -f /etc/proto-mesh/config ]
 then
-    echo "Generating Config File..."
+    echo "Generating Config File (1/2)..."
     sudo cp /etc/proto-mesh/config.sample /etc/proto-mesh/config
+fi
+
+# Generate Sample Config if Necessary
+if [ ! -f /etc/proto-mesh/wifi/wireless-config ]
+then
+    echo "Generating Config File (2/2)..."
+    sudo cp /etc/proto-mesh/wifi/wireless-config.sample /etc/proto-mesh/wifi/wireless-config
 fi
 
 echo "Installing Pre-Reqs..."
