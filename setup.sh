@@ -18,8 +18,12 @@ if [ $? != 0 ]; then echo 'batman-adv kernal module not present!';exit 1; fi
 echo "Copying Files..."
 sudo cp -rf proto-mesh /etc/proto-mesh
 
-echo "Generating Config File..."
-sudo cp /etc/proto-mesh/config.sample /etc/proto-mesh/config
+# Generate Sample Config if Necessary
+if [ ! -f /etc/proto-mesh/config ]
+then
+    echo "Generating Config File..."
+    sudo cp /etc/proto-mesh/config.sample /etc/proto-mesh/config
+fi
 
 echo "Installing Pre-Reqs..."
 # Load config file
