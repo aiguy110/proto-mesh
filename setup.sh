@@ -33,11 +33,12 @@ then
 fi
 
 echo "Installing Pre-Reqs..."
+
 # Load config file
 source /etc/proto-mesh/config
 
 # Verify that some packages are installed
-require-package (){
+requirepackage(){
    if [ ! -z "$2" ] 
       then
          ldconfig -p | grep $2 > /dev/null
@@ -54,7 +55,7 @@ require-package (){
    fi
 }
 # Verify that some packages are installed
-require-git-package(){
+requiregitpackage(){
    if [ ! -d "/etc/proto-mesh/git-packages/$1" ]
       then
          echo "Git-Package $1: Installing..."
@@ -71,12 +72,13 @@ require-git-package(){
 }    
  
 #Install Required Packages  
-require-package batctl
-require-package python3
-require-package ip
-require-package libsodium-dev libsodium
+requirepackage batctl
+requirepackage python3
+requirepackage ip
+requirepackage libsodium-dev libsodium
+
 if [ $ENABLE_KADNODE == '1' ]; then
-  require-git-package mwarning/KadNode
+  requiregitpackage mwarning/KadNode
 fi
 
 #Generate Service File

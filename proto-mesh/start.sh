@@ -21,18 +21,17 @@ cd utils
 bash batman-start.sh
 
 #Initialize Gateway based on config
-if [ $NET_GATEWAY == 'server' ] then
+if [ $NET_GATEWAY == 'server' ]; then
    echo "Setting up Batman Network Gateway" 
-   bash /usr/sbin/batctl bl 1
+   sudo batctl bl 1
    bash bridge-ethernet-AP.sh
    sudo batctl gw_mode server
-elif [ $NET_GATEWAY == 'client' ] then
+elif [ $NET_GATEWAY == 'client' ]; then
    echo "Setting up Batman Network Client"  
-   bash /usr/sbin/batctl bl 1
-   bash bridge-ethernet-AP.sh
+   sudo batctl bl 1
    sudo batctl gw_mode client 20
 else
-   bash /usr/sbin/batctl bl 1
+   sudo batctl bl 1
 fi
 
 # If KadNode name resolution is enabled, wait for neighbors
