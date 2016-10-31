@@ -29,6 +29,7 @@ if [ $NET_GATEWAY == 'server' ] then
 elif [ $NET_GATEWAY == 'client' ] then
    echo "Setting up Batman Network Client"  
    bash /usr/sbin/batctl bl 1
+   bash bridge-ethernet-AP.sh
    sudo batctl gw_mode client 20
 else
    bash /usr/sbin/batctl bl 1
