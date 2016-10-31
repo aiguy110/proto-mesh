@@ -27,5 +27,8 @@ IFACE_SETUP_SCRIPT='wifi/wireless-start.sh'
 # Enable KadNode decentralize name resolution
 ENABLE_KADNODE=0
 
+# Network Gateway Status
+NET_GATEWAY='client'
+
 # The name that will be used to access this node on the proto-mesh
 HOSTNAME='raspberryN.p2p'
