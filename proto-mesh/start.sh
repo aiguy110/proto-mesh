@@ -24,12 +24,13 @@ bash batman-start.sh
 if [ $NET_GATEWAY == 'server' ]; then
    echo "Setting up Batman Network Gateway" 
    sudo batctl bl 1
-   #bash bridge-ethernet-AP.sh
-   sudo batctl gw_mode server
+   sudo brctl addbr br0
+   sudo brctl addif br0 bat0 eth0 
+   #sudo batctl gw_mode server
 elif [ $NET_GATEWAY == 'client' ]; then
    echo "Setting up Batman Network Client"  
    sudo batctl bl 1
-   sudo batctl gw_mode client 20
+   #sudo batctl gw_mode client 20
 else
    sudo batctl bl 1
 fi

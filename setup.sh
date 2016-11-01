@@ -76,6 +76,7 @@ requirepackage batctl
 requirepackage python3
 requirepackage ip
 requirepackage libsodium-dev libsodium
+requirepackage bridge-utils
 
 if [ $ENABLE_KADNODE == '1' ]; then
   requiregitpackage mwarning/KadNode

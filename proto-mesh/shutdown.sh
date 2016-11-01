@@ -9,6 +9,12 @@ fi
 # Load settings
 source config
 
+#Initialize Close Bridge if Server
+if [ $NET_GATEWAY == 'server' ]; then
+    ip link set br0 down
+    brctl delbr br0
+fi
+
 # Kill KadNode if its running
 if [ $ENABLE_KADNODE == '1' ]; then
    kill $(ps -ef | grep kad | grep daemon | awk '{print $2}')
