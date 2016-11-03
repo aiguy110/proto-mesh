@@ -1,0 +1,14 @@
+===================================================
+| BATMAN TCP DUMP CONNECTIONS LOG BEGIN 2016-11-03//22:53:01 |
+===================================================
+{ 22:53:03.319525 BLA ANNOUNCE, backbone b8:27:eb:19:7b:10, bla group 60e8, crc 0aa7 }
+{ 22:53:13.329521 BLA ANNOUNCE, backbone b8:27:eb:19:7b:10, bla group 60e8, crc 0aa7 }
+{ 22:53:20.272433 IP 0.0.0.0.68 > 255.255.255.255.67: BOOTP/DHCP, Request from 0e:29:f9:09:db:ef, length 340 }
+{ 22:53:21.287282 IP 0.0.0.0.68 > 255.255.255.255.67: BOOTP/DHCP, Request from f2:7d:fd:ac:50:15, length 339 }
+{ 22:53:23.349488 BLA ANNOUNCE, backbone b8:27:eb:19:7b:10, bla group 60e8, crc 0aa7 }
+{ 22:53:33.370288 BLA ANNOUNCE, backbone b8:27:eb:19:7b:10, bla group 60e8, crc 0aa7 }
+{ 22:53:43.390364 BLA ANNOUNCE, backbone b8:27:eb:19:7b:10, bla group 60e8, crc 0aa7 }
+{ 22:53:53.410310 BLA ANNOUNCE, backbone b8:27:eb:19:7b:10, bla group 60e8, crc 0aa7 }
+===================================================
+| BATMAN TCP DUMP LOG STOP //22:54:01 |
+===================================================
