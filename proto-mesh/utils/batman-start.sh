@@ -10,16 +10,16 @@ if [ $? != 0 ]; then echo 'batman-adv kernal module not present!';exit 1; fi
 while true
 do
    sleep 1
-   batctl if add $NETWORK_IFACE
+   batctl if add $MESH_IFACE
    if [ $? == 0 ]; then break; fi
-done 
+done
 
 if [ $? == 0 ]
    then echo 'Successfully started BATMAN-adv!'
-   else 
+   else
       echo 'Unable to start BATMAN-adv.'
       exit 1
 fi
 
 # Generate and assign the bat0 an IPv6 address
-python3 giveIPv4.py $NETWORK_IFACE bat0
+python3 giveIPv4.py $MESH_IFACE bat0

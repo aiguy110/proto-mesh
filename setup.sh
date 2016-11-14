@@ -21,15 +21,8 @@ sudo cp -rf proto-mesh /etc/proto-mesh
 # Generate Sample Config if Necessary
 if [ ! -f /etc/proto-mesh/config ]
 then
-    echo "Generating Config File (1/2)..."
+    echo "Generating Config File..."
     sudo cp /etc/proto-mesh/config.sample /etc/proto-mesh/config
-fi
-
-# Generate Sample Config if Necessary
-if [ ! -f /etc/proto-mesh/wifi/wireless-config ]
-then
-    echo "Generating Config File (2/2)..."
-    sudo cp /etc/proto-mesh/wifi/wireless-config.sample /etc/proto-mesh/wifi/wireless-config
 fi
 
 echo "Installing Pre-Reqs..."
@@ -39,7 +32,7 @@ source /etc/proto-mesh/config
 
 # Verify that some packages are installed
 requirepackage(){
-   if [ ! -z "$2" ] 
+   if [ ! -z "$2" ]
       then
          ldconfig -p | grep $2 > /dev/null
       else
@@ -69,9 +62,9 @@ requiregitpackage(){
       else
          echo "Git-Package $1: Already installed"
    fi
-}    
- 
-#Install Required Packages  
+}
+
+#Install Required Packages
 requirepackage batctl
 requirepackage python3
 requirepackage ip
@@ -85,6 +78,11 @@ fi
 #Generate Service File
 echo "Generating Service File..."
 sudo cp /etc/proto-mesh/utils/protomesh.service /etc/systemd/system/protomesh.service
+
+#Make Start/Stop Scripts Executable
+echo "Setting Permissions..."
+sudo chmod +x /etc/proto-mesh/start.sh
+sudo chmod +x /etc/proto-mesh/shutdown.sh
 
 #Enable and Start Service
 echo "Starting protomesh service..."

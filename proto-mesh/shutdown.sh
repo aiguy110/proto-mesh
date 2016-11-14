@@ -7,7 +7,7 @@ if [ ! -f config ]; then
 fi
 
 # Load settings
-source config
+source /etc/proto-mesh/config
 
 #Initialize Close Bridge if Server
 if [ $NET_GATEWAY == 'server' ]; then
@@ -18,6 +18,15 @@ fi
 # Kill KadNode if its running
 if [ $ENABLE_KADNODE == '1' ]; then
    kill $(ps -ef | grep kad | grep daemon | awk '{print $2}')
+fi
+
+#Shutdown Network Interface
+if [ -d /etc/proto-mesh/channels/$MESH_IFACE"-"$MESH_CHANNEL ]
+then
+  cd /etc/proto-mesh/channels/$MESH_IFACE"-"$MESH_CHANNEL
+	bash stop.sh
+else
+	echo "Interface/Channel Not Defined!"
 fi
 
 # Unload the batman-adv kernal module

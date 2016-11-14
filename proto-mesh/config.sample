@@ -22,9 +22,10 @@ DEFAULT_ADDR='10.0.0.1'
 DEFAULT_MASK='255.255.255.0'
 DEFAULT_RANG='10.0.0.2,10.0.0.254,2m'
 
-# Network interface configuration (WiFi settings in "wifi/wireless-config")
-NETWORK_IFACE='wlan0'
-IFACE_SETUP_SCRIPT='wifi/wireless-start.sh' 
+# Network interface configuration
+MESH_IFACE='wlan0'
+MESH_CHANNEL='1'
+ESSID='mesh'
 
 # Enable KadNode decentralize name resolution
 ENABLE_KADNODE='0'
