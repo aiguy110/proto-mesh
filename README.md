@@ -23,14 +23,12 @@ worry about this.
 Installation
 ============
 To setup the current system to run this mesh software at startup,
-run `sudo ./setup.sh` in this directory. (This will make modifications
-to /etc/rc.local. Currently the only way for this to be undone is to
-manually remove the added lines.)
+run `sudo chmod +x setup.sh`then `sudo ./setup.sh` in this directory. (This will create a system service that allows proto-mesh to start on boot.)
 
-Configureation
+Configuration
 ==============
 The "config" file in this directory can be used to change the mesh
-settings for this node. Specifically, you may want to consider changing
+settings for this node including the network interface and channel. Specifically, you may want to consider changing
 the `HOSTNAME` field to something unique. This name can be used to reference
 this node by all other nodes on the network. For example if you set `HOSTNAME`
 line to read,
