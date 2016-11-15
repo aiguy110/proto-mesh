@@ -7,7 +7,7 @@ if [ ! -f ./.wifi/config ]; then
     exit
 fi
 
-# Take config
+# Load config
 source ./.wifi/config
 CHANNEL=$1
 
@@ -17,3 +17,6 @@ iwconfig $IFACE mode ad-hoc
 iwconfig $IFACE channel $CHANNEL
 iwconfig $IFACE essid $ESSID
 ip link set up dev $IFACE
+
+# Add it as a batman interface
+batctl if add $IFACE
