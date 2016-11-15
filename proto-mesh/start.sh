@@ -12,13 +12,11 @@ source /etc/proto-mesh/config
 # We're starting! :D
 echo "Starting proto-mesh..."
 
-if [ -d /etc/proto-mesh/channels/$MESH_IFACE"-"$MESH_CHANNEL ]
+if [ -d /etc/proto-mesh/channels/$DEFAULT_CHANNEL ]
 then
 	# Initialize the network interface
 	cd channels
-	cd $MESH_IFACE"-"$MESH_CHANNEL
-	bash start.sh
-	cd ../
+	bash $DEFUALT_CHANNEL/start.sh
 	cd ../
 
 	# Do other things
