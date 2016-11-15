@@ -7,24 +7,50 @@ if [ ! -f config ]; then
 fi
 
 # Load config file
-source /etc/proto-mesh/config
+source ./config
 
 # We're starting! :D
 echo "Starting proto-mesh..."
 
-if [ -d /etc/proto-mesh/channels/$MESH_IFACE"-"$MESH_CHANNEL ]
+if [ -d ./channels/$DEFAULT_CHANNEL ]
 then
+  # Enable the batman-adv kernal module
+  modprobe batman-adv
+  if [ $? != 0 ]; then echo 'batman-adv kernal module not present!';exit -1; fi
+
 	# Initialize the network interface
 	cd channels
-	cd $MESH_IFACE"-"$MESH_CHANNEL
-	bash start.sh
+	bash $DEFUALT_CHANNEL/start.sh
 	cd ../
-	cd ../
+
+  # Start BATMAN-adv, and wait before attempting to assign IP address
+  while true
+  do
+     sleep 1
+     if [ $? == 0 ]; then break; fi
+  done
+
+  if [ $? == 0 ]
+     then echo 'Successfully started BATMAN-adv!'
+     else
+        echo 'Unable to start BATMAN-adv.'
+        exit -1
+  fi
+
+  # Find out what interface was added
+  IFACE=$(batctl if)
+  if [ -z $IFACE ]; then
+    echo "Failed to open channel \"$DEFUALT_CHANNEL\""
+    echo "Aborting..."
+    exit -1
+  fi
+
+  # Generate and assign an IPv4 address using this interface's MAC address
+  cd utils
+  python3 giveIPv4.py $IFACE bat0
+  cd ../
 
 	# Do other things
-	cd utils
-
-	bash batman-start.sh
 
 	#Initialize Gateway based on config
 	if [ $NET_GATEWAY == 'server' ]; then
@@ -32,13 +58,11 @@ then
    		sudo batctl bl 1
    		sudo brctl addbr br0
    		sudo brctl addif br0 bat0 eth0
-   		#sudo batctl gw_mode server
 	elif [ $NET_GATEWAY == 'client' ]; then
    		echo "Setting up Batman Network Client"
    		sudo batctl bl 1
-   		#sudo batctl gw_mode client 20
 	else
-	        sudo batctl bl 1
+	    sudo batctl bl 1
 	fi
 
 	# If KadNode name resolution is enabled, wait for neighbors

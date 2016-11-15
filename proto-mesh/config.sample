@@ -10,7 +10,7 @@
 #  in the same directory as this one. It is      #
 #  suggested that, to begin with, you copy the   #
 #  contents of this file into a file of that     #
-#  name and change the values as needed.         # 
+#  name and change the values as needed.         #
 #                                                #
 ##################################################
 
@@ -22,10 +22,16 @@ DEFAULT_ADDR='10.0.0.1'
 DEFAULT_MASK='255.255.255.0'
 DEFAULT_RANG='10.0.0.2,10.0.0.254,2m'
 
-# Network interface configuration
-MESH_IFACE='wlan0'
-MESH_CHANNEL='1'
-ESSID='mesh'
+# Default communication channel. (NOTE: This is not the same as a 802.11 wifi
+# channel. Communication channels represent any non-overlapping mode of
+# communication two nodes can use to communicate. The key feature of channels is
+# that two nodes communicating on one channel cannot be heard by a node on a
+# different channel. Distint channels can mean anything from different ESSIDs,
+# to diffent WiFi channels (1,6,11), to completely differnt hardware devices
+# (ethernet, USRP, ZigBee...). New channels can be defined in the "channels"
+# folder). If you would like to change your wifi settings please refer to
+# channels/.wifi/config.
+DEFUALT_CHANNEL='wifi-1'
 
 # Enable KadNode decentralize name resolution
 ENABLE_KADNODE='0'
