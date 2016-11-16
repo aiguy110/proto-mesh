@@ -26,7 +26,7 @@ then
 fi
 
 # Generate WiFi Config if Necessary
-if [ ! -f /etc/proto-mesh/channel/.wifi/config ]
+if [ ! -f /etc/proto-mesh/channels/.wifi/config ]
 then
     echo "Generating Wifi Config File..."
     sudo cp /etc/proto-mesh/channels/.wifi/config.sample /etc/proto-mesh/channels/.wifi/config

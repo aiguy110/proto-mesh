@@ -40,7 +40,7 @@ then
   # Find out what interface was added
   IFACE=$(batctl if)
   if [ -z $IFACE ]; then
-    echo "Failed to open channel \"$DEFUALT_CHANNEL\""
+    echo "Failed to open channel \"$DEFUALT_CHANNEL\". No batman interfaces found."
     echo "Aborting..."
     exit -1
   fi
