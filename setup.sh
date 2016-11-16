@@ -13,10 +13,13 @@ echo "Intiailzing..."
 
 # Enable the batman-adv kernal module
 modprobe batman-adv
-if [ $? != 0 ]; then echo 'batman-adv kernal module not present!';exit 1; fi
+if [ $? != 0 ]; then echo 'batman-adv kernal module not present!';exit -1; fi
 
 echo "Copying Files..."
 sudo cp -rf proto-mesh /etc/proto-mesh
+
+# Add a logical link to the command line interface in /bin
+ln -s -T /etc/proto-mesh/meshcli.sh /bin/meshcli
 
 # Generate Config if Necessary
 if [ ! -f /etc/proto-mesh/config ]
