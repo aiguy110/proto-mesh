@@ -1,6 +1,7 @@
 #!/bin/bash
 
-FILE="/etc/proto-mesh/utils/protomesh.service"
+INSTALL_PATH="/etc/proto-mesh"
+
 # Make sure proto-mesh is not already "installed"
 if [ -f "$FILE" ] && [ "$1" != '-f' ]
 then
@@ -16,29 +17,34 @@ modprobe batman-adv
 if [ $? != 0 ]; then echo 'batman-adv kernal module not present!';exit -1; fi
 
 echo "Copying Files..."
-sudo cp -rf proto-mesh /etc/proto-mesh
+sudo cp -rf proto-mesh $INSTALL_PATH
 
 # Add a logical link to the command line interface in /bin
-ln -s -T /etc/proto-mesh/meshcli.sh /bin/meshcli
+ln -s -T $INSTALL_PATH/meshcli.sh /bin/meshcli
 
 # Generate Config if Necessary
-if [ ! -f /etc/proto-mesh/config ]
+if [ ! -f $INSTALL_PATH/config ]
 then
     echo "Generating Config File..."
-    sudo cp /etc/proto-mesh/config.sample /etc/proto-mesh/config
+    sudo cp $INSTALL_PATH/config.sample $INSTALL_PATH/config
+
+    # Update the PROTO_DIR field in installed copy
+    sudo sed -i -e "s/PROTO_DIR=/PROTO_DIR=$INSTALL_PATH/g" $INSTALL_PATH/config
 fi
 
+
+
 # Generate WiFi Config if Necessary
-if [ ! -f /etc/proto-mesh/channels/.wifi/config ]
+if [ ! -f $INSTALL_PATH/channels/.wifi/config ]
 then
     echo "Generating Wifi Config File..."
-    sudo cp /etc/proto-mesh/channels/.wifi/config.sample /etc/proto-mesh/channels/.wifi/config
+    sudo cp $INSTALL_PATH/channels/.wifi/config.sample $INSTALL_PATH/channels/.wifi/config
 fi
 
 echo "Installing Pre-Reqs..."
 
 # Load config file
-source /etc/proto-mesh/config
+source $INSTALL_PATH/config
 
 # Verify that some packages are installed
 requirepackage(){
@@ -59,12 +65,12 @@ requirepackage(){
 }
 # Verify that some packages are installed
 requiregitpackage(){
-   if [ ! -d "/etc/proto-mesh/git-packages/$1" ]
+   if [ ! -d "$INSTALL_PATH/git-packages/$1" ]
       then
          echo "Git-Package $1: Installing..."
-         mkdir -p "/etc/proto-mesh/git-packages/$1"
-         git clone "https://github.com/$1" "/etc/proto-mesh/git-packages/$1" > /dev/null
-         cd "/etc/proto-mesh/git-packages/$1"
+         mkdir -p "$INSTALL_PATH/git-packages/$1"
+         git clone "https://github.com/$1" "$INSTALL_PATH/git-packages/$1" > /dev/null
+         cd "$INSTALL_PATH/git-packages/$1"
          make > /dev/null
          sudo make install > /dev/null
          cd ../
@@ -87,12 +93,12 @@ fi
 
 #Generate Service File
 echo "Generating Service File..."
-sudo cp /etc/proto-mesh/utils/protomesh.service /etc/systemd/system/protomesh.service
+sudo cp $INSTALL_PATH/utils/protomesh.service /etc/systemd/system/protomesh.service
 
 #Make Start/Stop Scripts Executable
 echo "Setting Permissions..."
-sudo chmod +x /etc/proto-mesh/start.sh
-sudo chmod +x /etc/proto-mesh/shutdown.sh
+sudo chmod +x $INSTALL_PATH/start.sh
+sudo chmod +x $INSTALL_PATH/shutdown.sh
 
 #Enable and Start Service
 echo "Starting protomesh service..."
