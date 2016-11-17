@@ -30,12 +30,15 @@ if [ ! -f $INSTALL_PATH/config ]; then
   # Setup a system wide definition for MESH_DIR
   if [ ! -f /etc/environment ]; then
     echo "MESH_DIR=$INSTALL_PATH" > /etc/environment
+    echo "Creating /etc/environment"
   else
     grep MESH_DIR=$MESH_DIR /etc/environment
     if [ $? == 0 ]; then
       sudo sed -i -e "s:MESH_DIR=$MESH_DIR:MESH_DIR=$INSTALL_PATH:g" /etc/environment
+      echo "Editting /etc/environment"
     else
       sudo echo "MESH_DIR=$INSTALL_PATH" >> /etc/environment
+      echo "Appending to /etc/environment"
     fi
   fi
 fi
