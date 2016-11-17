@@ -33,7 +33,7 @@ if [ ! -f $INSTALL_PATH/config ]; then
   else
     grep MESH_DIR=$MESH_DIR /etc/environment
     if [ $? == 0 ]; then
-      sudo sed -i -e "s:MESH_DIR=$MESH_DIR:MESH_DIR=$INSTALL_PATH:g"
+      sudo sed -i -e "s:MESH_DIR=$MESH_DIR:MESH_DIR=$INSTALL_PATH:g" /etc/environment
     else
       sudo echo "MESH_DIR=$INSTALL_PATH" >> /etc/environment
     fi
