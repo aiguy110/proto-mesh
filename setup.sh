@@ -23,13 +23,21 @@ sudo cp -rf proto-mesh $INSTALL_PATH
 ln -s -T $INSTALL_PATH/meshcli.sh /bin/meshcli
 
 # Generate Config if Necessary
-if [ ! -f $INSTALL_PATH/config ]
-then
-    echo "Generating Config File..."
-    sudo cp $INSTALL_PATH/config.sample $INSTALL_PATH/config
+if [ ! -f $INSTALL_PATH/config ]; then
+  echo "Generating Config File..."
+  sudo cp $INSTALL_PATH/config.sample $INSTALL_PATH/config
 
-    # Update the PROTO_DIR field in installed copy
-    sudo sed -i -e "s/PROTO_DIR=/PROTO_DIR=$INSTALL_PATH/g" $INSTALL_PATH/config
+  # Setup a system wide definition for MESH_DIR
+  if [ ! -f /etc/environment ]; then
+    echo "MESH_DIR=$INSTALL_PATH" > /etc/environment
+  else
+    grep MESH_DIR=$MESH_DIR /etc/environment
+    if [ $? == 0 ]; then
+      sudo sed -i -e "s:MESH_DIR=$MESH_DIR:MESH_DIR=$INSTALL_PATH:g"
+    else
+      sudo echo "MESH_DIR=$INSTALL_PATH" >> /etc/environment
+    fi
+  fi
 fi
 
 
