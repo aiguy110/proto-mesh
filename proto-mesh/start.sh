@@ -22,6 +22,12 @@ then
 	cd channels
 	bash $DEFUALT_CHANNEL/start.sh
 	cd ../
+  
+  #Creat Joint If True
+  if [ $JOINT_FLAG == 'True' ]; then
+      echo "Enabling Joint..."
+      sudo batctl if add $JOINT_IFACE
+  fi
 
   # Start BATMAN-adv, and wait before attempting to assign IP address
   while true
