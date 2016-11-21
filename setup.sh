@@ -32,6 +32,12 @@ then
     sudo cp /etc/proto-mesh/channels/.wifi/config.sample /etc/proto-mesh/channels/.wifi/config
 fi
 
+if [ ! -f /etc/proto-mesh/channel/.wifi5/config ]
+then
+    echo "Generating Wifi (5G) Config File..."
+    sudo cp /etc/proto-mesh/channels/.wifi5/config.sample /etc/proto-mesh/channels/.wifi5/config
+fi
+
 echo "Installing Pre-Reqs..."
 
 # Load config file

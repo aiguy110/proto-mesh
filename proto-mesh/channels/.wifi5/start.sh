@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Make sure config exists
-if [ ! -f ./.wifi/config ]; then
-    echo 'WiFi config file not present! Please add one at "proto-mesh/channels/.wifi/config"'
+if [ ! -f ./.wifi5/config ]; then
+    echo 'WiFi config file not present! Please add one at "proto-mesh/channels/.wifi5/config"'
     echo 'Aborting...'
     exit
 fi
 
 # Load config
-source ./.wifi/config
+source ./.wifi5/config
 CHANNEL=$1
 
 # Get our classic 802.11 ad-hoc network up
