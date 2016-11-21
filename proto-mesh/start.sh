@@ -47,7 +47,7 @@ then
 
   # Generate and assign an IPv4 address using this interface's MAC address
   cd utils
-  python3 giveIPv4.py $IFACE bat0
+  python3 giveIPv4.py $DEFAULT_IFACE bat0
   cd ../
 
 	# Do other things
