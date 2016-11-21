@@ -1,2 +1,2 @@
 #!/bin/bash
-bash ./.wifi/start.sh 100
+bash ./.wifi5/start.sh 100
