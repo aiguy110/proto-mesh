@@ -21,7 +21,7 @@ DEFAULT_EXIP='10.0.0.1/24'
 DEFAULT_ADDR='10.0.0.1'
 DEFAULT_MASK='255.255.255.0'
 DEFAULT_RANG='10.0.0.2,10.0.0.254,2m'
-DEFAULT_IFACE='wlan0'
+DEFAULT_IFACE=
 
 # Default communication channel. (NOTE: This is not the same as a 802.11 wifi
 # channel. Communication channels represent any non-overlapping mode of
@@ -32,7 +32,7 @@ DEFAULT_IFACE='wlan0'
 # (ethernet, USRP, ZigBee...). New channels can be defined in the "channels"
 # folder). If you would like to change your wifi settings please refer to
 # channels/.wifi/config.
-DEFUALT_CHANNEL='wifi-1'
+DEFAULT_CHANNEL='wifi-1'
 
 # Joint Configuration
 JOINT_FLAG='False'

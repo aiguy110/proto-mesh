@@ -1,2 +1,2 @@
-IFACE=wlan0
+IFACE=
 ESSID=mesh

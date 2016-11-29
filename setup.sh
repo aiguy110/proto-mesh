@@ -18,11 +18,14 @@ if [ $? != 0 ]; then echo 'batman-adv kernal module not present!';exit 1; fi
 echo "Copying Files..."
 sudo cp -rf proto-mesh /etc/proto-mesh
 
+# Get name of WiFi interface
+WIFI_IFACE=$(iwconfig 2>/dev/null | grep IEEE | awk '{print $1}')
+
 # Generate Config if Necessary
 if [ ! -f /etc/proto-mesh/config ]
 then
     echo "Generating Config File..."
-    sudo cp /etc/proto-mesh/config.sample /etc/proto-mesh/config
+    sudo sed -e "s:DEFAULT_IFACE=:DEFAULT_IFACE=$WIFI_IFACE:g" /etc/proto-mesh/config.sample > /etc/proto-mesh/config
 fi
 
 # Generate Ethernet Config if Necessary
@@ -36,7 +39,7 @@ fi
 if [ ! -f /etc/proto-mesh/channel/.wifi/config ]
 then
     echo "Generating Wifi Config File..."
-    sudo cp /etc/proto-mesh/channels/.wifi/config.sample /etc/proto-mesh/channels/.wifi/config
+    sudo sed -e "s:IFACE=:IFACE=$WIFI_IFACE:g" /etc/proto-mesh/channels/.wifi/config.sample > /etc/proto-mesh/channels/.wifi/config
 fi
 
 if [ ! -f /etc/proto-mesh/channel/.wifi5/config ]

@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Change into the proto-mesh directory
+cd /etc/proto-mesh
+
 # Verify that the config file exists
-if [ ! -f config ]; then
+if [ ! -f ./config ]; then
     echo 'config file not present! Aborting.'
     exit
 fi
@@ -20,9 +23,9 @@ then
 
 	# Initialize the network interface
 	cd channels
-	bash $DEFUALT_CHANNEL/start.sh
+	bash $DEFAULT_CHANNEL/start.sh
 	cd ../
-  
+
   #Creat Joint If True
   if [ $JOINT_FLAG == 'True' ]; then
       echo "Enabling Joint..."
@@ -46,7 +49,7 @@ then
   # Find out what interface was added
   IFACE=$(batctl if)
   if [ -z $IFACE ]; then
-    echo "Failed to open channel \"$DEFUALT_CHANNEL\""
+    echo "Failed to open channel \"$DEFAULT_CHANNEL\""
     echo "Aborting..."
     exit -1
   fi
