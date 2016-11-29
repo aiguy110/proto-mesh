@@ -106,7 +106,16 @@ sudo chmod +x /etc/proto-mesh/shutdown.sh
 
 #Enable and Start Service
 echo "Starting protomesh service..."
-sudo systemctl enable protomesh.service
+
+#Prompt for Boot
+read -p "Start Proto-Mesh on Boot (Y/n)? " CONT
+CONT=${CONT,,} # tolower
+if [ "$CONT" = "n" ]; then
+  sudo systemctl disable protomesh.service
+else
+  sudo systemctl enable protomesh.service
+fi
+
 sudo systemctl daemon-reload
 sudo systemctl start protomesh.service
 echo "Setup Complete!"
