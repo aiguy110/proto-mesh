@@ -7,3 +7,4 @@
 
 sudo sh batctl_o_conn.sh $1 &
 sudo sh batctl_stats.sh $1 &
+sudo sh batctl_tcp_dump.sh $1 &
