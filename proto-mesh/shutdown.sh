@@ -21,10 +21,10 @@ if [ $ENABLE_KADNODE == '1' ]; then
 fi
 
 #Shutdown Network Interface
-if [ -d /etc/proto-mesh/channels/$DEFUALT_CHANNEL ]
+if [ -d /etc/proto-mesh/channels/$DEFAULT_CHANNEL ]
 then
   cd /etc/proto-mesh/channels
-	bash $DEFUALT_CHANNEL/stop.sh
+	bash $DEFAULT_CHANNEL/stop.sh
 else
 	echo "Interface/Channel Not Defined!"
 fi

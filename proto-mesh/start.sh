@@ -3,6 +3,9 @@
 # Change into the proto-mesh directory
 cd /etc/proto-mesh
 
+# Try to kill NetworkManager
+sudo service NetworkManager stop
+
 # Verify that the config file exists
 if [ ! -f ./config ]; then
     echo 'config file not present! Aborting.'
