@@ -51,7 +51,7 @@ then
 
   # Find out what interface was added
   IFACE=$(batctl if)
-  if [ -z $IFACE ]; then
+  if [ -z "$IFACE" ]; then
     echo "Failed to open channel \"$DEFAULT_CHANNEL\""
     echo "Aborting..."
     exit -1
