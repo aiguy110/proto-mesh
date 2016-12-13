@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 #run to allow batman to be visible by wireless access point
 #allows access to interrior nodes within batman-adv mesh from WAP
