@@ -14,7 +14,7 @@ pass='raspberry'
 while read ip; do
 	#connect each machine
 	echo "ssh into $ip..."
-	sshuser="sshpass -p $pass ssh -tt -X $user@$ip.local"
+	sshuser="sshpass -p $pass ssh -tt -X $user@$ip"
 	xterm -title $ip -e $sshuser &
 done < local_ips.txt
 

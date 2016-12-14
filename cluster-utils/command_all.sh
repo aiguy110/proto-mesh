@@ -4,6 +4,7 @@
 user="pi"
 pass="raspberry"
 
+ADDR_FILE='/home/pi/bat-ips'
 
 # IP List
 #Create file of local ubuntu ips
@@ -14,7 +15,7 @@ pass="raspberry"
 while read ip; do
 	#connect each machine
 	echo "ssh into $ip..."
-	sshuser="sshpass -p $pass ssh -oStrictHostKeyChecking=no -tt -X $user@$ip.local "
+	sshuser="sshpass -p $pass ssh -oStrictHostKeyChecking=no -tt -X $user@$ip "
 	commands="echo $pass | sudo -S $1"
 
 	if [ ! -z "$2" ]
@@ -27,6 +28,6 @@ while read ip; do
 	$sshuser $commands &
 	
 
-done < local_ips.txt
+done < $ADDR_FILE
 
 
