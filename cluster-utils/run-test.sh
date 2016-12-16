@@ -1,6 +1,6 @@
 #!/bin/bash
 INTERVAL=${1:-1000}
-BYTES=${2:-100}
+BYTES=${2:-128}
 COUNT=${3:-100}
 
 echo "Interval: $INTERVAL"

@@ -15,7 +15,7 @@ def macToIPv6(mac):
    return 'fe80:bbbb::'+mac[:4]+':'+mac[4:8]+':'+mac[8:]
 
 def listBatmanMACs():
-   lines = check_output('batctl o', shell=True).decode('ascii').split('\n')
+   lines = check_output('batctl o -t 50', shell=True).decode('ascii').split('\n')
    for row in lines[2:-1]:
       if row[:2] == 'No':
          continue
