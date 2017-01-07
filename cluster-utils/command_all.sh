@@ -30,4 +30,5 @@ while read ip; do
 
 done < $ADDR_FILE
 
+eval $1 &
 
