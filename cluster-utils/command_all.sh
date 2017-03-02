@@ -4,7 +4,7 @@
 user="pi"
 pass="raspberry"
 
-ADDR_FILE="$(pwd)/bat-ips"
+ADDR_FILE="/home/pi/proto-mesh/cluster-utils/bat-ips"
 
 # IP List
 #Create file of local ubuntu ips
