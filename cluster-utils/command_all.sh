@@ -10,6 +10,8 @@ ADDR_FILE="/home/pi/proto-mesh/cluster-utils/bat-ips"
 #Create file of local ubuntu ips
 #avahi-browse -tl _workstation._tcp | grep IPv4 | awk '{print $4}' > /home/vtclab/Share/tools/local_ips.txt
 
+#kill sshpass execution
+trap 'killall sshpass' TERM
 
 #read file line by line
 while read ip; do
@@ -30,5 +32,6 @@ while read ip; do
 
 done < $ADDR_FILE
 
-eval $1 &
 
+
+$1
