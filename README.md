@@ -15,7 +15,7 @@ If you are using a WiFi interface (as you probably are), then make
 sure Network Manager is disabled before attempting to run the start script. 
 The command to do this is,
 
-    sudo service NetworkManger start 
+    sudo service NetworkManger stop 
   
 If you are running this on a Raspberry Pi you should not need to 
 worry about this.
